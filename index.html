@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Literary Lounge | Premium Digital Library</title>
+    <meta name="description" content="A premium digital library and book tracking platform. Discover, read, and track your favorite literature.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="light-theme">
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <h1>Literary Lounge</h1>
+        </div>
+        
+        <nav id="nav-menu" class="nav-menu">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#library">Library</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-actions">
+            <button id="cart-btn" class="btn-icon cart-icon" aria-label="Cart">
+                <span class="icon">🛒</span>
+                <span id="cart-badge" class="badge">0</span>
+            </button>
+            <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">
+                <span class="icon">🌓</span>
+            </button>
+            <div id="auth-buttons">
+                <button id="login-btn" class="btn btn-outline">Login</button>
+                <button id="signup-btn" class="btn btn-primary">Sign Up</button>
+            </div>
+            <div id="user-menu" class="hidden">
+                <span id="welcome-msg">Welcome, User</span>
+                <button id="logout-btn" class="btn btn-outline">Logout</button>
+            </div>
+            <button id="mobile-menu-btn" class="btn-icon mobile-only" aria-label="Toggle Menu">
+                <span class="icon">☰</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal hidden">
+        <div class="modal-content glass-panel">
+            <span class="close-btn" data-modal="auth-modal">&times;</span>
+            <h2 id="modal-title">Welcome Back</h2>
+            <form id="auth-form">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <p id="auth-error" class="error-msg"></p>
+                <p id="auth-success" class="success-msg hidden"></p>
+                <button type="submit" class="btn btn-primary full-width" id="submit-auth">Login</button>
+            </form>
+            <p class="switch-auth">
+                <span id="switch-auth-text">Don't have an account?</span>
+                <a href="#" id="switch-auth-link">Sign up</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal hidden">
+        <div class="modal-content glass-panel cart-modal-content">
+            <span class="close-btn" data-modal="cart-modal">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cart-items-container" class="cart-items">
+                <!-- Cart items rendered here -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">Total: ₹<span id="cart-total-price">0.00</span></div>
+                <button id="checkout-btn" class="btn btn-primary full-width">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Book Details Modal -->
+    <div id="book-details-modal" class="modal hidden">
+        <div class="modal-content glass-panel large-modal">
+            <span class="close-btn" data-modal="book-details-modal">&times;</span>
+            <div id="book-details-container" class="book-details-layout">
+                <!-- Rendered dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="modal hidden">
+        <div class="modal-content glass-panel text-center">
+            <span class="close-btn" data-modal="contact-modal">&times;</span>
+            <h2 style="margin-bottom: 0.5rem;">Get in Touch</h2>
+            <p style="font-size: 1.2rem; font-weight: 600; color: var(--primary-color);">Surbhi Narang</p>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">Contact on mail, or call for any query.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <a href="mailto:surbhinarang08@icloud.com" class="btn btn-primary full-width">✉️ surbhinarang08@icloud.com</a>
+                <a href="tel:6239880821" class="btn btn-outline full-width">📞 6239880821</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero section-padding">
+            <div class="hero-content">
+                <h1 class="fade-in">Discover Your Next Great Read</h1>
+                <p class="fade-in delay-1">Explore thousands of books, track your reading progress, and build your digital library in an elegant, distraction-free environment.</p>
+                <div class="hero-buttons fade-in delay-2">
+                    <a href="#library" class="btn btn-primary btn-large">Explore Library</a>
+                </div>
+            </div>
+            <div class="hero-quote fade-in delay-3">
+                <blockquote id="daily-quote">
+                    "Loading thought-provoking quote..."
+                </blockquote>
+                <cite id="quote-author"></cite>
+            </div>
+        </section>
+
+        <!-- Statistics Dashboard -->
+        <section id="dashboard" class="dashboard section-padding bg-alt">
+            <div class="container">
+                <h2 class="section-title">Your Reading Stats</h2>
+                <div class="stats-grid">
+                    <div class="stat-card glass-panel">
+                        <h3 class="stat-title">Total Books</h3>
+                        <p class="stat-value" id="stat-total">0</p>
+                    </div>
+                    <div class="stat-card glass-panel">
+                        <h3 class="stat-title">Favorites</h3>
+                        <p class="stat-value" id="stat-favorites">0</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Library Section -->
+        <section id="library" class="library section-padding container">
+            <div class="library-header">
+                <h2 class="section-title">The Library</h2>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search by title or author...">
+                </div>
+            </div>
+
+            <div class="library-layout">
+                <!-- Sidebar Filters -->
+                <aside class="sidebar glass-panel">
+                    <h3>Filters</h3>
+                    
+                    <div class="filter-group">
+                        <h4>Genre</h4>
+                        <select id="genre-filter">
+                            <option value="all">All Genres</option>
+                            <option value="Fiction">Fiction</option>
+                            <option value="Non-Fiction">Non-Fiction</option>
+                            <option value="Classic">Classic</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Sort By</h4>
+                        <select id="sort-filter">
+                            <option value="default">Default</option>
+                            <option value="a-z">Title (A-Z)</option>
+                            <option value="rating">Highest Rated</option>
+                            <option value="recent">Recently Added</option>
+                            <option value="price-low">Price: Low to High</option>
+                        </select>
+                    </div>
+                </aside>
+
+                <!-- Book Grid -->
+                <div class="books-container">
+                    <div id="books-grid" class="books-grid">
+                        <!-- Skeletons / Books rendered here via JS -->
+                    </div>
+                    <div id="no-results" class="hidden text-center">
+                        <p>No books found matching your criteria.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonials -->
+        <section class="testimonials section-padding bg-alt">
+            <div class="container text-center">
+                <h2 class="section-title">What Readers Say</h2>
+                <div class="testimonial-slider" id="testimonial-slider">
+                    <!-- Rendered via JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h2>Literary Lounge</h2>
+                <p>Curating the best reading experiences since 2026.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#" id="contact-btn">Contact</a>
+            </div>
+            <div class="footer-socials">
+                <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="social-icon">𝕏</a>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="social-icon">📷</a>
+                <a href="https://github.com" target="_blank" aria-label="GitHub" class="social-icon">💻</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Literary Lounge. Built with Vanilla JS.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/storage.js"></script>
+    <script src="js/books.js"></script>
+    <script src="js/cart.js"></script> <!-- Added Cart Module -->
+    <script src="js/auth.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
