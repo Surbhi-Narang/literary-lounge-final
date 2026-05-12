@@ -33,6 +33,11 @@ Literary Lounge is a modern and fully responsive digital library website built u
 
 The main goal of this project is to create a visually appealing and interactive frontend website while demonstrating important JavaScript concepts learned in college.
 
+## 🌐 Live Demo
+
+Visit the website here:  
+https://surbhi-narang.github.io/literary-lounge-final/
+
 ## Author 👩‍💻
 
 Made by Surbhi Narang
