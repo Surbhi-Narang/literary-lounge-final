@@ -1,0 +1,116 @@
+/* ===== Responsive Media Queries ===== */
+
+/* Large Tablets and smaller desktops */
+@media (max-width: 1024px) {
+    .library-layout {
+        grid-template-columns: 200px 1fr;
+        gap: 1.5rem;
+    }
+    
+    .hero h1 {
+        font-size: 3rem;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    .mobile-only {
+        display: inline-flex;
+    }
+
+    /* Mobile Nav Menu */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px;
+        height: 100vh;
+        background: var(--glass-bg);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        flex-direction: column;
+        padding-top: 80px;
+        transition: right 0.4s ease;
+        z-index: 90;
+        border-left: 1px solid var(--glass-border);
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .library-layout {
+        grid-template-columns: 1fr; /* Stack sidebar on top */
+    }
+
+    .sidebar {
+        position: static;
+        margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-quote {
+        border-radius: 12px;
+        border-left: none;
+        border-top: 4px solid var(--primary-color);
+        margin: 0 1rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    /* Details Modal Responsive */
+    .book-details-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .detail-img-container {
+        max-width: 200px;
+        margin: 0 auto;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+    .section-padding {
+        padding: var(--spacing-md) 0;
+    }
+
+    .hero {
+        min-height: 60vh;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .books-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Modals */
+    .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+    }
+}
